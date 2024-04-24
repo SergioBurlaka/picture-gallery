@@ -1,6 +1,6 @@
 import { db } from "~/server/db";
 
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
 // const mockUrls = [
 //   "https://utfs.io/f/d2b7309a-f02b-46a3-a995-07da4bd70598-sura7a.jpg",
@@ -20,14 +20,17 @@ export const dynamic = 'force-dynamic'
 // const mockImages = mockUrls.map((url, index) => ({ id: index + 1, url }));
 
 export default async function HomePage() {
-  const images = await db.query.images.findMany();
+  const images = await db.query.images.findMany({
+    orderBy: (model, { desc }) => desc(model.id),
+  });
   console.log("images", images);
   return (
     <main className="mx-auto px-10">
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-8">
         {[...images].map((image) => (
           <div key={image.id} className="w-48">
             <img className="h-full object-cover" src={image.url} />
+            <div>{image.name}</div>
           </div>
         ))}
       </div>
