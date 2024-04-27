@@ -1,5 +1,6 @@
 import { getMyImages } from "~/server/queries";
 import Image from "next/image";
+import Link from "next/Link";
 // const mockUrls = [
 //   "https://utfs.io/f/d2b7309a-f02b-46a3-a995-07da4bd70598-sura7a.jpg",
 //   "https://utfs.io/f/b88252da-9811-4615-9b53-e49ad133ee8f-susitd.jpg",
@@ -24,13 +25,15 @@ export default async function Images() {
     <div className="flex flex-wrap justify-center gap-10">
       {images.map((image) => (
         <div key={image.id} className="w-48">
-          <Image
-            className="h-full object-cover"
-            width={200}
-            height={300}
-            src={image.url}
-            alt={image.name}
-          />
+          <Link href={`/img/${image.id}`}>
+            <Image
+              className="h-full object-cover"
+              width={200}
+              height={300}
+              src={image.url}
+              alt={image.name}
+            />
+          </Link>
           <div>{image.name}</div>
         </div>
       ))}
