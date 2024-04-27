@@ -1,5 +1,4 @@
-import { db } from "~/server/db";
-
+import { getMyImages } from "~/server/queries";
 // const mockUrls = [
 //   "https://utfs.io/f/d2b7309a-f02b-46a3-a995-07da4bd70598-sura7a.jpg",
 //   "https://utfs.io/f/b88252da-9811-4615-9b53-e49ad133ee8f-susitd.jpg",
@@ -18,18 +17,16 @@ import { db } from "~/server/db";
 // const mockImages = mockUrls.map((url, index) => ({ id: index + 1, url }));
 
 export default async function Images() {
-  const images = await db.query.images.findMany({
-    orderBy: (model, { desc }) => desc(model.id),
-  });
-  
+  const images = await getMyImages();
+
   return (
-      <div className="flex flex-wrap gap-8">
-        {[...images].map((image) => (
-          <div key={image.id} className="w-48">
-            <img className="h-full object-cover" src={image.url} />
-            <div>{image.name}</div>
-          </div>
-        ))}
-      </div>
+    <div className="flex flex-wrap gap-8">
+      {[...images].map((image) => (
+        <div key={image.id} className="w-48">
+          <img className="h-full object-cover" src={image.url} />
+          <div>{image.name}</div>
+        </div>
+      ))}
+    </div>
   );
 }
