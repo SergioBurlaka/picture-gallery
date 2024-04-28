@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/Link";
 
 import { SignInButton, SignedOut, UserButton, SignedIn } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
@@ -9,6 +10,7 @@ const TopNav = () => {
   return (
     <nav className="flex w-full items-center justify-between border-b p-4 text-xl font-semibold">
       <h2>Gallery</h2>
+      <Link href="/"> Home </Link>
       <div className="flex flex-row">
         <SignedOut>
           <SignInButton />
@@ -16,7 +18,9 @@ const TopNav = () => {
         <SignedIn>
           <UploadButton
             endpoint="imageUploader"
-            onClientUploadComplete={() => {router.refresh()}}
+            onClientUploadComplete={() => {
+              router.refresh();
+            }}
           />
           <UserButton />
         </SignedIn>
