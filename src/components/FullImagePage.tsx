@@ -30,6 +30,7 @@ const FullPageImage = async ({ id }: { id: string }) => {
 
         <div className="flex w-48 flex-shrink-0 flex-col gap-2 border-l bg-zinc-900/50 p-4 text-white">
           <div className="border-b pb-4 text-center text-lg break-words">
+            
             {image.name}
           </div>
           <div className="flex flex-col">
