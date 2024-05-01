@@ -8,7 +8,7 @@ const TopNav = () => {
     <nav className="fixed bg-white flex w-full items-center justify-between border-b p-4 text-xl font-semibold">
       <h2>Gallery</h2>
       <Link href="/"> Home </Link>
-      <div className="flex flex-row">
+      <div className="flex flex-row gap-4 items-center">
         <SignedOut>
           <SignInButton />
         </SignedOut>
