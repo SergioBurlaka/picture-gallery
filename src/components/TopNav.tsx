@@ -1,4 +1,4 @@
-import Link from "next/Link";
+import Link from "next/link";
 
 import { SignInButton, SignedOut, UserButton, SignedIn } from "@clerk/nextjs";
 import UploadButtonSimple from "./UploadButtonSimple";
