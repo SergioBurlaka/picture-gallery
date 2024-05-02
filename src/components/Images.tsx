@@ -1,6 +1,6 @@
 import { getMyImages } from "~/server/queries";
 import Image from "next/image";
-import Link from "next/Link";
+import Link from "next/link";
 // const mockUrls = [
 //   "https://utfs.io/f/d2b7309a-f02b-46a3-a995-07da4bd70598-sura7a.jpg",
 //   "https://utfs.io/f/b88252da-9811-4615-9b53-e49ad133ee8f-susitd.jpg",
