@@ -2,6 +2,10 @@ import { clerkClient } from "@clerk/nextjs/server";
 import { getImage } from "~/server/queries";
 import Image from "next/image";
 
+import { Button } from "./ui/button";
+
+import { deleteImage } from "~/server/queries";
+
 const FullPageImage = async ({ id }: { id: string }) => {
   const idAsNumber = Number(id);
   if (Number.isNaN(idAsNumber)) throw new Error("invalid photo id");
@@ -32,6 +36,18 @@ const FullPageImage = async ({ id }: { id: string }) => {
           <div className="flex flex-col">
             <span>Created On:</span>
             <span>{new Date(uloaderInfo.createdAt).toLocaleDateString()}</span>
+          </div>
+          <div className="flex flex-col">
+            <form
+              action={async () => {
+                "use server";
+                await deleteImage(idAsNumber);
+              }}
+            >
+              <Button type="submit" variant="destructive">
+                Delete
+              </Button>
+            </form>
           </div>
         </div>
       </div>
