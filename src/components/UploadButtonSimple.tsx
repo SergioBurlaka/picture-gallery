@@ -4,6 +4,8 @@ import { useUploadThing } from "~/utils/uploadthing";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
+import { usePostHog } from "posthog-js/react";
+
 // inferred input off useUploadThing
 type Input = Parameters<typeof useUploadThing>;
 
@@ -59,12 +61,10 @@ const LoadingSpinnerSVG = () => {
 //   );
 // };
 
-
 // window.makeToast = MakeUploadToast;
 
 // дозволяє написати в консолі window.makeToast()
 //  що викличе появу тоаста на сторінці
-
 
 const useUploadThingInputProps = (...args: Input) => {
   const $ut = useUploadThing(...args);
@@ -91,9 +91,11 @@ const useUploadThingInputProps = (...args: Input) => {
 
 const UploadButtonSimple = () => {
   const router = useRouter();
+  const posthog = usePostHog();
 
   const { inputProps } = useUploadThingInputProps("imageUploader", {
     onUploadBegin() {
+      posthog.capture("upload_begin");
       toast(
         <div>
           <LoadingSpinnerSVG />
